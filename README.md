@@ -47,7 +47,9 @@ Este proyecto está diseñado para generar datos de prueba para las colecciones 
 Parámetros de Consulta:
 
 users (opcional): Número de usuarios a generar (valor predeterminado: 50).
+
 pets (opcional): Número de mascotas a generar (valor predeterminado: 50).
+
 Ejemplo de URL: /api/mocks/generate-data?users=10&pets=10
 
 ![Captura de generate-data](src/public/img/mockingusers.jpg)
