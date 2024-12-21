@@ -7,6 +7,7 @@ import sessionsRouter from './routes/sessions.router.js';
 import mocksRouter from './routes/mocks.router.js';
 import { connectToMongoDB } from './config/db.js';
 import 'dotenv/config'
+import setupSwagger from './utils/swagger.js';
 
 const app = express();
 const PORT = process.env.PORT||8080;
@@ -14,11 +15,14 @@ connectToMongoDB();
 
 app.use(express.json());
 app.use(cookieParser());
-
 app.use('/api/users',usersRouter);
 app.use('/api/pets',petsRouter);
 app.use('/api/adoptions',adoptionsRouter);
 app.use('/api/sessions',sessionsRouter);
 app.use('/api/mocks', mocksRouter);
 
+setupSwagger(app);
+
 app.listen(PORT,()=>console.log(`Listening on ${PORT}`))
+
+export default app 

@@ -3,6 +3,12 @@
 
 Este proyecto está diseñado para generar datos de prueba para las colecciones de usuarios y mascotas, utilizando la biblioteca **Faker**. Los datos generados se insertan de manera masiva en una base de datos de pruebas, lo que facilita la realización de pruebas con datos ficticios y evita el uso de información real durante el desarrollo.
 
+Uso de **Swagger** para documentar y probar los endpoints en `user.router`.
+
+Implementación de **Tester** en el router `adoption` para pruebas adicionales.
+
+ **DockerHub** como medio para desplegar y gestionar imágenes del proyecto.
+
 ## Requisitos Previos
 
 - Tener instalados **Node.js** y **npm**.
@@ -25,6 +31,12 @@ Este proyecto está diseñado para generar datos de prueba para las colecciones 
 4. Ejecutar el proyecto:
     ```bash
    node src/app.js
+
+4. Links *DockerHub*:
+    ```bash
+   docker pull mtofalo22/proyecto-adopt-me-final
+   https://hub.docker.com/r/mtofalo22/proyecto-adopt-me-final
+
 
 ## Endpoints
 
@@ -56,3 +68,7 @@ Ejemplo de URL: /api/mocks/generate-data?users=10&pets=10
 
 ![Captura MongoAtlas con los datos en "pets" generados](src/public/img/mongo-pets.jpg)
 ![Captura MongoAtlas con los datos en "users" generados](src/public/img/mongo-users.jpg)
+
+**Swagger**
+
+![Captura de Swagger](src/public/img/swagger.png)

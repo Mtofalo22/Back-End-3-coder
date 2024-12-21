@@ -26,10 +26,55 @@ const deleteUser = async(req,res) =>{
     const result = await usersService.getUserById(userId);
     res.send({status:"success",message:"User deleted"})
 }
+const createUser = async (req, res) => {
+    try {
+        const { first_name, last_name, email, password, role } = req.body;
+
+        if (!first_name || !last_name || !email || !password) {
+            return res.status(400).send({
+                status: "error",
+                error: "Todos los campos requeridos deben ser completados"
+            });
+        }
+
+        const existingUser = await usersService.getUserByEmail(email);
+        if (existingUser) {
+            return res.status(400).send({
+                status: "error",
+                error: "El correo electrónico ya está registrado"
+            });
+        }
+
+        const hashedPassword = await createHash(password);
+        const newUser = {
+            first_name,
+            last_name,
+            email,
+            password: hashedPassword,
+            role: role || "user",
+            pets: []
+        };
+
+        const createdUser = await usersService.create(newUser);
+
+        res.status(201).send({
+            status: "success",
+            message: "Usuario creado exitosamente",
+            payload: createdUser
+        });
+    } catch (error) {
+        console.error("Error creando usuario:", error);
+        res.status(500).send({
+            status: "error",
+            error: "Error interno del servidor"
+        });
+    }
+};
 
 export default {
-    deleteUser,
     getAllUsers,
     getUser,
-    updateUser
-}
+    updateUser,
+    deleteUser,
+    createUser
+};
